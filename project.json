@@ -1,0 +1,72 @@
+{
+  "name": "zod-rhf-demo",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/zod-rhf-demo"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "zod-rhf-demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "zod-rhf-demo:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "zod-rhf-demo:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "zod-rhf-demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "zod-rhf-demo:build:development"
+        },
+        "production": {
+          "buildTarget": "zod-rhf-demo:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/zod-rhf-demo"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "coverage/zod-rhf-demo"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}
