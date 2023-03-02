@@ -87,7 +87,7 @@ export function FormValidationJS() {
           gap: 2,
         }}
       >
-        <input {...register('name')} />
+        <Input name="name" />
         <Input type="number" name="quantity" />
         <Checkbox control={control} name="accept" label="Accept Terms" />
         <DisplayWarning />
@@ -104,9 +104,5 @@ export function FormValidationJS() {
 function DisplayWarning() {
   const accept = useWatch({ name: 'accept' });
 
-  return accept ? (
-    <Box bgcolor={'green'} w={10} h={10} />
-  ) : (
-    <Box bgcolor={'red'} w={10} h={10} />
-  );
+  return accept ? null : <Typography>Must accept</Typography>;
 }

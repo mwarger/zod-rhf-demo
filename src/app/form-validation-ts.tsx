@@ -21,9 +21,9 @@ import { z } from 'zod';
 import axios from 'axios';
 
 const promptSchema = z.object({
-  name: z.string().min(3),
+  name: z.string().min(3).max(10),
   quantity: z.coerce.number().min(1).max(10),
-  accept: z
+  acceptTerms: z
     .boolean()
     .refine((v) => v, { message: 'You must accept terms to continue.' }),
 });
@@ -57,7 +57,7 @@ export function FormValidationTS() {
     defaultValues: {
       name: '',
       quantity: 0,
-      accept: false,
+      acceptTerms: false,
     },
   });
 
@@ -94,11 +94,11 @@ export function FormValidationTS() {
       >
         <Input control={control} name="name" />
         <Input type="number" name="quantity" />
-        <Checkbox control={control} name="accept" label="Accept Terms" />
+        <Checkbox control={control} name="acceptTerms" label="Accept Terms" />
         <DisplayWarning />
 
-        {errors.accept ? (
-          <Typography>{errors.accept.message}</Typography>
+        {errors.acceptTerms ? (
+          <Typography>{errors.acceptTerms.message}</Typography>
         ) : null}
         <Button type="submit">Submit</Button>
       </Box>
@@ -107,7 +107,7 @@ export function FormValidationTS() {
 }
 
 function DisplayWarning() {
-  const accept = useWatch<Prompt>({ name: 'accept' });
+  const accept = useWatch<Prompt>({ name: 'acceptTerms' });
 
   return accept ? null : <Typography>You must accept the terms</Typography>;
 }

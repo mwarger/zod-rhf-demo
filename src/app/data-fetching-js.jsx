@@ -3,7 +3,7 @@ import axios from 'axios';
 import { z } from 'zod';
 
 const ApiResponse = z.object({
-  hello: z.string(),
+  message: z.string(),
 });
 
 const useData = () => {
@@ -48,7 +48,7 @@ export function DataFetchingJS() {
   return (
     <>
       <h1>Data Fetching TypeScript + Zod</h1>
-      <p>Fetch from API: {data?.hello}</p>
+      <p>Fetch from API: {data?.message}</p>
 
       <button onClick={() => setShow(!show)}>{show ? 'Hide' : 'Show'}</button>
       {show ? <pre>{JSON.stringify(data)}</pre> : null}
