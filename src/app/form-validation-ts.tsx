@@ -93,7 +93,7 @@ export function FormValidationTS() {
         }}
       >
         <Input control={control} name="name" />
-        <Input type="number" control={control} name="quantity" />
+        <Input type="number" name="quantity" />
         <Checkbox control={control} name="accept" label="Accept Terms" />
         <DisplayWarning />
 
